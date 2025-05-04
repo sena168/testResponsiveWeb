@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloody Dark Halloween Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/anti.css" />
+  </head>
+  <script>
+	// Dynamic blood trail that follows scroll
+	document.addEventListener('DOMContentLoaded', () => {
+	  const bloodEffect = document.createElement('div');
+	  bloodEffect.className = 'blood-scroll-effect';
+	  document.body.appendChild(bloodEffect);
+	  
+	  window.addEventListener('scroll', () => {
+		const scrollPos = window.scrollY || window.pageYOffset;
+		bloodEffect.style.setProperty('--scroll-pos', `${scrollPos}px`);
+	  });
+	});
+
+	// Add this to the JS for mobile support
+window.addEventListener('touchmove', () => {
+  const scrollPos = window.scrollY || window.pageYOffset;
+  bloodEffect.style.setProperty('--scroll-pos', `${scrollPos}px`);
+});
+  </script>
+  
+  <body>
+    <!--main title-->
+    <div class="main-title-section">
+      <h1>Welcome to the Haunted Frontend</h1>
+      <p>Explore the spooky tools of frontend development</p>
+    </div>
+    <div class="parent-container">
+      <!--div HTML-->
+      <div class="card">
+        <img src="./assets/images/html_anti.png" alt="HTML Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>HTML</h2>
+            <p>The skeleton of web pages, structuring content for browsers</p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <!--div CSS-->
+      <div class="card">
+        <img src="./assets/images/css_anti.png" alt="CSS Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>CSS</h2>
+            <p>Styles and enhances the eerie presentation of web elements</p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <!--div JS-->
+      <div class="card">
+        <img src="./assets/images/js_anti.png" alt="JavaScript Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>JavaScript</h2>
+            <p>Adds interactivity and dynamic spookiness to websites</p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <!--div Tailwind-->
+      <div class="card">
+        <img src="./assets/images/tailwind_anti.png" alt="Tailwind CSS Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>Tailwind CSS</h2>
+            <p>
+              A utility-first CSS framework for fast and responsive haunted UI design
+            </p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <!--div ReactJS-->
+      <div class="card">
+        <img src="./assets/images/react_anti.png" alt="ReactJS Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>React JS</h2>
+            <p>
+              A JavaScript library for building dynamic and scalable ghostly interfaces
+            </p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <!--div Figma-->
+      <div class="card">
+        <img src="./assets/images/figma_anti.png" alt="Figma Icon" />
+        <div class="content">
+          <div class="text_block">
+            <h2>Figma</h2>
+            <p>
+              A collaborative design tool for creating spooky UI/UX prototypes and
+              wireframes
+            </p>
+          </div>
+          <button>Learn More</button>
+        </div>
+      </div>
+    </div>
+	<script>
+		// Easter egg implementation for Halloween version
+		let clickCount = 0;
+		let lastClickTime = 0;
+		const buttons = document.querySelectorAll('.content button');
+		const resetTimeout = 2000; // 2 seconds to reset counter
+		
+		buttons.forEach(button => {
+		  button.addEventListener('click', function(e) {
+			const now = Date.now();
+			
+			// Reset counter if too much time passed between clicks
+			if (now - lastClickTime > resetTimeout) {
+			  clickCount = 0;
+			}
+			
+			clickCount++;
+			lastClickTime = now;
+			
+			// Check for 6 consecutive clicks
+			if (clickCount >= 6) {
+			  localStorage.setItem('halloweenMode', 'false');
+			  window.location.href = 'index.html';
+			}
+			
+			// Normal click behavior (prevent default only after 6 clicks)
+			if (clickCount < 6) {
+			  // Your normal button behavior here
+			  console.log('Normal click');
+			} else {
+			  e.preventDefault();
+			}
+		  });
+		});
+	
+		// Check if we should be in Halloween mode
+		if (localStorage.getItem('halloweenMode') === 'true') {
+		  // Already on the right page
+		} else if (window.location.pathname.includes('anti.html') && localStorage.getItem('halloweenMode') !== 'true') {
+		  window.location.href = 'index.html';
+		}
+	  </script>
+  </body>
+</html>

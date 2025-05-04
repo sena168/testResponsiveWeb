@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignment HTML + Vanilla CSS - {WPH-088-Sena}</title>
+    <title>Thesis Theme</title>
     <link
       href="https://fonts.googleapis.com/css?family=Poppins"
       rel="stylesheet"
@@ -21,7 +21,7 @@
     <div class="parent-container">
       <!--div HTML-->
       <div class="card">
-        <img src="./assets/images/html.png" />
+        <img src="./assets/images/html-icon.png" />
         <div class="content">
           <div class="text_block">
             <h2>HTML</h2>
@@ -94,5 +94,40 @@
         </div>
       </div>
     </div>
+    <script>
+      // Easter egg implementation
+      let clickCount = 0;
+      let lastClickTime = 0;
+      const buttons = document.querySelectorAll('.content button');
+      const resetTimeout = 2000; // 2 seconds to reset counter
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+          const now = Date.now();
+
+          // Reset counter if too much time passed between clicks
+          if (now - lastClickTime > resetTimeout) {
+            clickCount = 0;
+          }
+
+          clickCount++;
+          lastClickTime = now;
+
+          // Check for 6 consecutive clicks
+          if (clickCount >= 6) {
+            localStorage.setItem('halloweenMode', 'true');
+            window.location.href = 'anti.html';
+          }
+
+          // Normal click behavior (prevent default only after 6 clicks)
+          if (clickCount < 6) {
+            // Your normal button behavior here
+            console.log('Normal click');
+          } else {
+            e.preventDefault();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
